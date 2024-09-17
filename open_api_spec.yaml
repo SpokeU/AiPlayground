@@ -1,0 +1,53 @@
+openapi: 3.0.0
+info:
+  title: Connection API
+  version: '1.0'
+paths:
+  /connections/types:
+    get:
+      summary: Get supported connection types
+      operationId: getConnectionTypes
+      responses:
+        200:
+          description: A list of connection types
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: './schemas/ConnectionType.yaml'
+  /connections/{type}/parameters:
+    get:
+      summary: Get parameters required for a specific connection type
+      operationId: getConnectionTypeParameters
+      parameters:
+        - name: type
+          in: path
+          required: true
+          schema:
+            $ref: './schemas/ConnectionTypeEnum.yaml'
+      responses:
+        200:
+          description: Connection type parameters
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: './schemas/ConnectionParameters.yaml'
+  /connections:
+    post:
+      summary: Create a new connection
+      operationId: createConnection
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: './schemas/CreateConnectionRequest.yaml'
+      responses:
+        201:
+          description: Connection created
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/CreateConnectionResponse.yaml'

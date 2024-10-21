@@ -1,0 +1,35 @@
+type: object
+required:
+  - name
+  - type
+  - details
+properties:
+  name:
+    type: string
+    example: "User DB"
+  type:
+    $ref: "./ConnectionTypeEnum.yaml"
+  details:
+    type: object
+    required:
+      - host
+      - port
+      - database
+      - username
+      - password
+    properties:
+      host:
+        type: string
+        example: "localhost"
+      port:
+        type: integer
+        example: 15432
+      database:
+        type: string
+        example: "users_db"
+      username:
+        type: string
+        example: "my_user"
+      password:
+        type: string
+        example: "my_password"

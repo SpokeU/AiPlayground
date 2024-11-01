@@ -1,0 +1,30 @@
+openapi: 3.0.0
+info:
+  title: DataHub API
+  description: API for managing database connections and executing queries.
+  version: 1.0.0
+paths:
+  /connections:
+    post:
+      operationId: createConnection
+      tags:
+        - connections
+      summary: Creates new connection
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './schemas/ConnectionRequest.yaml'
+      responses:
+        '201':
+          description: Connection created successfully
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/ConnectionResponse.yaml'
+components:
+  schemas:
+    ConnectionTypeEnum:
+      type: string
+      enum: [ "POSTGRES", "MONGO" ]
